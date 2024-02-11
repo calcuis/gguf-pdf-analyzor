@@ -4,3 +4,4 @@ pull your GGUF and PDF file(s) in the same directory and simply run it by:
 ```
 python analyzor.py
 ```
+testing stage - with llama-core
