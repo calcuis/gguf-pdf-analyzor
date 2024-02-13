@@ -39,10 +39,16 @@ def pdf_handler():
             input("---Enter to analyze the PDF content above---")
 
             print("Processing...")
-            # output = llm("Q: "+inject, max_tokens=4096, echo=True)
+            # output = llm("Q: "+inject, max_tokens=4096, echo=True)  # (option 1)
             output = llm("Q: "+inject, max_tokens=32768, echo=True)
             answer = output['choices'][0]['text']
             print(answer+"\n")
+
+            # # ctransformer_core (option 2)
+            # # ###########################################
+            # ans = llm(inject)
+            # print(inject+ans)
+            # # ###########################################
 
         except (ValueError, IndexError):
             print("Invalid choice. Please enter a valid number.")
@@ -69,8 +75,14 @@ if gguf_files:
         ModelPath=selected_file
         print("Processing...")
         
-        from llama_core import Llama
+        from llama_core import Llama # (option 1)
         llm = Llama(model_path=ModelPath)
+        
+        # # # ctransformer_core (option 2)
+        # # ###########################################
+        # from ctransformer_core import AutoModelForCausalLM
+        # llm = AutoModelForCausalLM.from_pretrained(ModelPath)
+        # # ###########################################
 
         while True:
             ask = input("---Enter to select a PDF file (Q for quit)---")
