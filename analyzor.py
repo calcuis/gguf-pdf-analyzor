@@ -4,9 +4,7 @@ def pdf_handler():
 
     pdf_files = [file for file in os.listdir() if file.endswith('.pdf')]
 
-
     def join_text(input_text):
-        # Remove newline characters and join lines into one
         joined_text = ' '.join(input_text.splitlines())
         return joined_text
 
@@ -38,7 +36,6 @@ def pdf_handler():
             inject = f"analyze the content below: "+output_text
 
             print(f"\nPDF cotent extracted as below:\n\n"+text)
-            # ask = input("Enter a Question (Q for quit): ")
             input("---Enter to analyze the PDF content above---")
 
             print("Processing...")
@@ -52,7 +49,6 @@ def pdf_handler():
     else:
         print("No PDF files are available in the current directory.")
         input("--- Press ENTER To Exit ---")
-
 
 import os
 
@@ -71,8 +67,9 @@ if gguf_files:
         selected_file=gguf_files[choice_index]
         print(f"Model file: {selected_file} is selected!")
         ModelPath=selected_file
-
-        from llama_cpp import Llama
+        print("Processing...")
+        
+        from llama_core import Llama
         llm = Llama(model_path=ModelPath)
 
         while True:
